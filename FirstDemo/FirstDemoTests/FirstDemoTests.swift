@@ -25,13 +25,6 @@ final class FirstDemoTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
     
     func test_numberOfVowles_whtenGivenDominik_shouldReturn3() {
         let viewController = ViewController()
@@ -39,7 +32,29 @@ final class FirstDemoTests: XCTestCase {
         let result = viewController.numberOfVowles(in: "Dominik")
         
         XCTAssertEqual(result, 3,
-            "Expected 3 vowels in 'Dominik' but got \(result)")
+                       "Expected 3 vowels in 'Dominik' but got \(result)")
+    }
+    
+    func testCompareDictionaries() {
+        let dict1: [Int: String] = [1: "Apple", 2: "Banana"]
+        let dict2: [Int: String] = [1: "Apple", 2: "Bread"]
+        
+        DDHAssertEqual(dict1, dict2)
     }
 
+    func DDHAssertEqual<T: Equatable, U: Equatable>(
+        _ first: [T:U], _ second: [T:U],
+        file: StaticString = #filePath,
+        line: UInt = #line)
+    {
+        if first == second { return }
+        
+        for key in first.keys {
+            if first[key] != second[key] {
+                let message = "\(first[key]!) is not equal to \(second[key]!)"
+                XCTFail(message, file: file, line: line)
+            }
+        }
+    }
+    
 }
