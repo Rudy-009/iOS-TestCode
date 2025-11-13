@@ -41,6 +41,22 @@ final class FirstDemoTests: XCTestCase {
         
         DDHAssertEqual(dict1, dict2)
     }
+    
+    func testBooleanExpression1() {
+        XCTAssert(true)
+        XCTAssert(false)
+    }
+    
+    func testBooleanExpression2() {
+        XCTAssertTrue(true)
+        XCTAssertTrue(false)
+    }
+    
+    func testBooleanExpression3() {
+        XCTAssertFalse(true)
+        XCTAssertFalse(false)
+    }
+
 
     func DDHAssertEqual<T: Equatable, U: Equatable>(
         _ first: [T:U], _ second: [T:U],
